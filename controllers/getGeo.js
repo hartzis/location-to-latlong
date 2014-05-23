@@ -29,14 +29,16 @@ var getLatLongFromLocation = function(location, cb) {
             };
             var lat = (body.results[0].geometry.location.lat),
                 lng = (body.results[0].geometry.location.lng),
-                coordinates = {
-                    'lat': lat,
-                    'lng': lng
+                address = (body.results[0].formatted_address),
+                newLocation = {
+                    address: address,
+                    latitude: lat,
+                    longitude: lng
                 };
             if (cb) {
-                cb(coordinates);
+                cb(newLocation);
             } else {
-                return coordinates;
+                return newLocation;
             };
         });
     });

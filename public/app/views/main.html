@@ -10,38 +10,51 @@
 <div class="row">
   <div class="col-xs-12 text-center">
     <form name="locationInput">
-      <input type="text" name="location" class="form-control" ng-model="newMarker.location" required placeholder="Location to Retrieve Lat / lng">
+      <input type="text" name="location" class="form-control" ng-model="address" required placeholder="Location to Retrieve Lat / lng">
     </form>
   </div>
 </div>
 
 <div class="row">
   <div class="col-xs-12 text-center">
-    <p><button class="btn btn-sm btn-success" ng-href="#" ng-disabled="locationInput.$invalid" ng-click="getGeo()">Get Lat/Lng</span></button></p>
+    <p><button class="btn btn-sm btn-success" ng-href="#" ng-disabled="locationInput.$invalid" ng-click="getGeo(address)">Get Lat/Lng</span></button></p>
   </div>
 </div>
 
 <div class="row">
   <form name="latlng">
     <div class="col-xs-6">
-      <input type="text" name="lat" class="form-control" ng-model="newMarker.lat" required placeholder="Latitude" disabled="disabled">
+      <input type="text" name="lat" class="form-control" ng-model="latitude" required placeholder="Latitude" disabled="disabled">
     </div>
     <div class="col-xs-6">
-      <input type="text" name="lng" class="form-control" ng-model="newMarker.lng" required placeholder="Longitude" disabled="disabled">
+      <input type="text" name="lng" class="form-control" ng-model="longitude" required placeholder="Longitude" disabled="disabled">
     </div>
   </form>
 </div>
 
 <div class="row">
   <div class="col-xs-12 text-center">
-    <p><button class="btn btn-sm btn-success" ng-href="#" ng-disabled="latlng.$invalid">Create Marker</span></button></p>
+    <p><button class="btn btn-sm btn-success" ng-href="#" ng-disabled="latlng.$invalid" ng-click="createMarker(latitude,longitude)">Create Marker</span></button></p>
   </div>
 </div>
   
 
 
 <div class="row">
-  <div class="col-xs-12"><google-map center="map.center" zoom="map.zoom"></google-map></div>
+  <div class="col-xs-12">
+    <google-map center="map.center" zoom="map.zoom" draggable="true">
+      <!-- <markers models="map.mapMarkers.markers" coords="'self'" click="'onClicked'" icon="img/bird_blue_32.png" options="map.mapMarkers.markerOptions"> -->
+      <markers models="map.mapMarkers.markers" coords="'self'" click="'onClicked'" fit="true">
+<!--         <windows show="'showWindow'" closeClick="'closeClick'" ng-cloak>
+          <div style="width:100px; height:100px" ng-non-bindable>
+            <p ng-non-bindable style="font-weight:bold">{{location}}</p>
+            <p ng-non-bindable>Lat: {{latitude}}</p>
+            <p ng-non-bindable>Lng: {{longitude}}</p>
+          </div>
+        </windows> -->
+      </markers>
+    </google-map>
+  </div>
 </div>
 
 
